@@ -14,9 +14,7 @@ export default function Login() {
 
 
     const handleLogin = () => {
-        // Dispatch the login action
         dispatch(login());
-        // Save the email to localStorage
         localStorage.setItem('email', email);
     };
 
