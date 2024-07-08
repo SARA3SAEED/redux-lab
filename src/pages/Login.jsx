@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { login, logout } from '../LogInSlice'; 
 import { Link } from 'react-router-dom';
 
 export default function Login() {
+    const [email, setEmail]=useState('');
+
 
     const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
     const dispatch = useDispatch();
@@ -11,7 +13,12 @@ export default function Login() {
 
 
 
-
+    const handleLogin = () => {
+        // Dispatch the login action
+        dispatch(login());
+        // Save the email to localStorage
+        localStorage.setItem('email', email);
+    };
 
 
 
@@ -56,6 +63,8 @@ export default function Login() {
                         className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
                         id="exampleFormControlInput1"
                         placeholder="Username"
+                        value= {email}
+                        onChange={e => setEmail(e.target.value)}
                       />
                       <label
                         htmlFor="exampleFormControlInput1"
@@ -87,7 +96,7 @@ export default function Login() {
                         type="button"
                         data-twe-ripple-init=""
                         data-twe-ripple-color="light"
-                        onClick={() => dispatch(login())}
+                        onClick={handleLogin}
                         disabled={isLoggedIn}
                         style={{
                           background:
@@ -141,7 +150,7 @@ export default function Login() {
       <div className="mx-44 mt-28  block rounded-lg bg-white p-6 text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white">
   <p className="mb-4 text-base">
   <div>
-        {isLoggedIn ? <p>Welcome! You are logged in.</p> : <p>Please login.</p>}
+        {isLoggedIn ? <p>Welcome! You are logged in.</p> : <p>Please login  {email}.</p>}
       </div>
   </p>
       </div>
