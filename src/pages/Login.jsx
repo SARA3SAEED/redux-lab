@@ -138,10 +138,15 @@ export default function Login() {
           </div>
         </div>
       </div>
-    </div>
-    {/* <div>
+      <div className="mx-44 mt-28  block rounded-lg bg-white p-6 text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white">
+  <p className="mb-4 text-base">
+  <div>
         {isLoggedIn ? <p>Welcome! You are logged in.</p> : <p>Please login.</p>}
-      </div> */}
+      </div>
+  </p>
+      </div>
+    </div>
+
   </section>
 
   
